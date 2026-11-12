@@ -1,0 +1,4 @@
+.DS_Store
+# One term per line (client, product, person names) that must never appear in the kit.
+# Read by scripts/check.sh; never committed.
+.sensitive-terms

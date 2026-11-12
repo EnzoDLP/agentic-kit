@@ -1,0 +1,33 @@
+{
+  "permissions": {
+    "ask": [
+      "Bash(supabase db push*)",
+      "Bash(supabase db reset*)",
+      "Bash(supabase db pull*)",
+      "Bash(supabase functions deploy*)",
+      "Bash(supabase link*)",
+      "Bash(npx supabase db push*)",
+      "Bash(npx supabase db reset*)",
+      "Bash(npx supabase db pull*)",
+      "Bash(npx supabase functions deploy*)",
+      "Bash(npx supabase link*)",
+      "Bash(npx supabase@* db push*)",
+      "Bash(npx supabase@* db reset*)",
+      "Bash(npx supabase@* db pull*)",
+      "Bash(npx supabase@* functions deploy*)",
+      "Bash(npx supabase@* link*)",
+      "Bash(supabase * --linked*)",
+      "Bash(supabase * --db-url*)",
+      "Bash(supabase * --project-ref*)",
+      "Bash(npx supabase * --linked*)",
+      "Bash(npx supabase * --db-url*)",
+      "Bash(npx supabase * --project-ref*)",
+      "Bash(npx supabase@* * --linked*)",
+      "Bash(npx supabase@* * --db-url*)",
+      "Bash(npx supabase@* * --project-ref*)"
+    ],
+    "deny": [
+      "Edit(**/lib/database.types.ts)"
+    ]
+  }
+}

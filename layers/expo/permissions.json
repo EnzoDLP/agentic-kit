@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "ask": [
+      "Bash(eas build*)",
+      "Bash(eas submit*)",
+      "Bash(eas update*)",
+      "Bash(npx eas-cli build*)",
+      "Bash(npx eas-cli submit*)",
+      "Bash(npx eas-cli update*)",
+      "Bash(npx eas build*)",
+      "Bash(npx eas submit*)",
+      "Bash(npx eas update*)",
+      "Bash(npx expo prebuild --clean*)",
+      "Bash(npx expo prebuild * --clean*)",
+      "Bash(npx expo run:ios --device*)",
+      "Bash(npx expo run:ios * --device*)",
+      "Bash(npx eas-cli@* build*)",
+      "Bash(npx eas-cli@* submit*)",
+      "Bash(npx eas-cli@* update*)"
+    ],
+    "deny": [
+      "Edit(**/.expo/types/**)"
+    ]
+  }
+}

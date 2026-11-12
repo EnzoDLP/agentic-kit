@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "ask": [
+      "Bash(git push*)",
+      "Bash(git -C * push*)"
+    ],
+    "deny": [
+      "Bash(npm audit fix --force*)",
+      "Edit(**/node_modules/**)"
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+# workflow-init proposes merging these lists into the project's openspec/config.yaml.
+# Each key names an OpenSpec artifact; OpenSpec appends that key's list to the prompt it writes
+# the artifact with.
+rules:
+  proposal:
+    - List what this change will not do, one line per item.
+    - Before drafting, ask the user a factual question — does this change handle personal, health or payment data? Do not guess which law or regime would apply.
+  specs:
+    - Write each scenario as a single outcome a test can check without looking inside the code, such as a returned value, a printed output, a saved record or an HTTP response. Do not mention functions or calls.
+    - Include the empty case, the failure case, and which roles are allowed to trigger each action.
+  design:
+    - Under "Decisions", one item per decision — first the rule, then why it was preferred.
+    - Include a "Rejected alternatives" section — one line per option that was considered and dropped, saying why it was dropped.
+    - Include a "Known gaps" table whose two columns are "Left out" and "Add it when".
+    - When the change handles personal, health or payment data, include a "Regulated data" section with five fields — Date, Trigger, Consulted, Decision, Reference. The answer is given by the organisation's data-protection or compliance team, not by you; while nobody has answered, write that it is unanswered.
+  tasks:
+    - Sequence the tasks so that the test for each scenario comes before the code that makes it pass.

@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "ask": [
+      "Bash(vercel --prod*)",
+      "Bash(npx vercel --prod*)"
+    ],
+    "deny": [
+      "Edit(**/src/generated/**)"
+    ]
+  }
+}
