@@ -32,7 +32,7 @@ four things, nothing more:
 Keep back the build's evidence block, any summary of the change and any reason behind a choice.
 Each of them hands the author's view to the reviewer.
 
-A session that has no memory of the change may review it itself, following
+A session that has no memory of the change reviews it itself, following
 `.claude/agentic-kit/layers/workflow/agents/workflow-reviewer.md`. If no subagent can be started,
 say so and suggest a review from a new session; do not call this one independent.
 

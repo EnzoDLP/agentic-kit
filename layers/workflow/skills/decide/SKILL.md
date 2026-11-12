@@ -12,7 +12,7 @@ tests, why records are immutable, and how one replaces another are there.
 
 ## Steps
 
-1. **Pick the destination** with the three tests (scope, cost of reversing, lifetime): an ADR, the
+1. **Pick the destination** with the three tests (scope, reversal cost, lifetime): an ADR, the
    `design.md` of an open OpenSpec change, or a line in `AGENTS.md` if the decision proves to be a
    fact anyone can read in the code. Tell the user which, and why, in one line.
 2. **Ask for what the record lacks.** That is: the situation when the decision was made, the

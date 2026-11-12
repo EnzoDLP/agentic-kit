@@ -11,8 +11,8 @@ Work from a written source, never from a summary kept in the conversation. The s
   its delta specs is one unit, taken in the order `tasks.md` gives. Name a scenario by its
   requirement and its own name. The out-of-scope part of `proposal.md` lists the non-goals.
 - **a review finding the user selected.** Each one is a unit.
-- **numbered results the user approved in writing**, when the project has no OpenSpec. Each result
-  is a unit.
+- **numbered results the user approved in writing**, whenever no OpenSpec change governs the work
+  (a project without OpenSpec, or a ticket or bug outside any change). Each result is a unit.
 
 ## Which commands to run
 

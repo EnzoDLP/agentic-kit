@@ -19,7 +19,7 @@
 <!-- First, in one or two present-tense sentences, what the system now does. Then why this option
      beat the others. -->
 
-## Options turned down
+## Rejected alternatives
 
 <!-- A bullet for every option that was really on the table, each with what sank it. When nobody
      remembers what else was considered, say so in a single line; do not make up a debate. -->

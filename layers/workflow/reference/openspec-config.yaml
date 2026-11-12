@@ -3,11 +3,11 @@
 # the artifact with.
 rules:
   proposal:
-    - List what this change will not do, one line per item.
+    - Under an explicit out-of-scope heading, list what this change will not do, one line per item.
     - Before drafting, ask the user a factual question — does this change handle personal, health or payment data? Do not guess which law or regime would apply.
   specs:
-    - Write each scenario as a single outcome a test can check without looking inside the code, such as a returned value, a printed output, a saved record or an HTTP response. Do not mention functions or calls.
-    - Include the empty case, the failure case, and which roles are allowed to trigger each action.
+    - Write each scenario as a single outcome a test can check without looking inside the code, such as a returned value, a printed output, a saved record or a response. Do not mention functions or calls.
+    - Include the empty case, the failure case, and who may trigger what.
   design:
     - Under "Decisions", one item per decision — first the rule, then why it was preferred.
     - Include a "Rejected alternatives" section — one line per option that was considered and dropped, saying why it was dropped.
