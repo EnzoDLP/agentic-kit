@@ -20,3 +20,9 @@ Verified with `powerbi-client-react` 2.0.2 and `powerbi-client` 2.25.0.
 - **`import { models } from 'powerbi-client'` needs `powerbi-client` as a direct dependency**:
   `powerbi-client-react` exports only `PowerBIEmbed` and its types (`TokenType`, `TraceType`,
   `Report` live in `powerbi-client`).
+- **Secure embed: the report's own link refuses the iframe.** `app.powerbi.com/groups/…/reports/…`
+  shows "app.powerbi.com refused to connect" in a frame: only
+  `https://app.powerbi.com/reportEmbed?reportId=…&autoAuth=true&ctid=<tenant id>` (optional
+  `&pageName=…`) may be framed. "File → Embed report → Website or portal" builds it, but is greyed
+  out for a user with read access only: build it by hand, the tenant id is in "? → About Power BI"
+  (tenant URL, `ctid=`). Check the URL's path, not only its host, before framing it.
