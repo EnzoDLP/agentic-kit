@@ -19,3 +19,7 @@
   leaves `config.params` empty, unless a `paramsSerializer` is configured. A story's axios adapter
   that routes on `config.url` must compare the path without the query
   (`config.url?.split('?')[0]`) and read the filters from the URL, not from `params`.
+- A **stateful** adapter (one that keeps what create / update / delete changed, so the next GET
+  reads it) put in `meta.parameters` is built once when the file loads and shared by every story
+  of the file: one story's change (a rename, a deletion) leaks into the next and makes it fail.
+  Build one per story (`parameters: { mockApi: catalogueApi() }` on each story).
