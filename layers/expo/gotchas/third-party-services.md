@@ -54,3 +54,14 @@ The integrations are in the `expo-revenuecat` and `expo-sentry` skills.
 
 - The region is in the plugin's URL (`https://de.sentry.io/`); a wrong region does not upload
   source maps, with no error. A test in dev never validates the upload.
+- **`sentry-expo-upload-sourcemaps dist` fails with "SSL certificate problem: self-signed
+  certificate in certificate chain" behind a TLS-inspecting proxy** (corporate network):
+  `sentry-cli` 2.58 reads the API fine but its chunk upload does not trust the proxy's root CA,
+  although `curl` does (macOS keychain). Fix: export the keychain certificates and point
+  `SSL_CERT_FILE` at them — `security find-certificate -a -p /Library/Keychains/System.keychain >
+  ca.pem` (plus `/System/Library/Keychains/SystemRootCertificates.keychain`), then
+  `SSL_CERT_FILE=ca.pem npx sentry-expo-upload-sourcemaps dist`. Never `verify_ssl = false`.
+- The script reads `SENTRY_AUTH_TOKEN` from the local `.env`: a `Secret` EAS variable is never
+  downloaded by `eas update` (only "Plain text" and "Sensitive" are), and the upload runs as a
+  separate command after it anyway. The source maps can be sent after the update is published,
+  from the same `dist` (matched by debug id); never re-export first.
