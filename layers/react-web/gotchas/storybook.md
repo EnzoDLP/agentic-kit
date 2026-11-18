@@ -23,3 +23,16 @@
   reads it) put in `meta.parameters` is built once when the file loads and shared by every story
   of the file: one story's change (a rename, a deletion) leaks into the next and makes it fail.
   Build one per story (`parameters: { mockApi: catalogueApi() }` on each story).
+
+## Play functions run as Vitest browser tests
+
+- A story run by `@storybook/addon-vitest` opens at **1200 × 900** unless the story sets
+  `globals: { viewport: { value: 'mobile1' } }` (any `MINIMAL_VIEWPORTS` key, or one from
+  `parameters.viewport.options`): breakpoint behavior is tested that way, not with a wrapper.
+- Clicking a real `<a href>` in a play function navigates the test iframe: the run ends with an
+  unhandled error and no failing test named. To test "the click calls the app's handler instead of
+  following the link", register `window.addEventListener('click', e => { prevented =
+  e.defaultPrevented; e.preventDefault() }, { once: true })` before the click (it runs after
+  React's handler), then assert `prevented`.
+- `getByRole` / `queryByRole` skip elements hidden with `display: none`; to assert that something
+  is hidden, query it with `{ hidden: true }` and expect `not.toBeVisible()`.
