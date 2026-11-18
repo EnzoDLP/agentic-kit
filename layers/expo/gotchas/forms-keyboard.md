@@ -23,6 +23,13 @@
     margins also fix the keyboard, but iOS 27 then draws the header as on a scrolled page;
   - Android: the keyboard-avoiding view starts at the top of the screen, React Native header
     included, otherwise it measures itself short by the header height.
+- **Navigating from inside a focused `TextInput`'s `onChangeText` crashes Android (Fabric)**:
+  `IllegalStateException: addViewAt: failed to insert view [n] into parent [m] … The specified
+  child already has a parent` (fatal, framework frames only), when a pasted value replaces the
+  page at once (`router.replace` called in the handler). The next page's first mount places a view
+  in two parents (here a `react-native-svg` icon of a header button). Reproduced on React Native
+  0.86 / Expo SDK 57; the same navigation from a button, keyboard open, does not crash. Fix: leave
+  the event first, `setTimeout(() => navigate(…), 0)` in the handler.
 - Never keyboard avoidance inside an input component: nested in the page's, it shrinks the input.
 - Multiline input that grows with its content: 10 approaches tried, none stays aligned during the
   transition (`RCTUITextView -contentSize` returns `MAX(text, placeholder)`). Fixed height +

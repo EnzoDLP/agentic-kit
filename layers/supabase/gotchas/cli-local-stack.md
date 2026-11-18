@@ -23,6 +23,13 @@
   socket).
 - **One stack at a time** on a small Docker VM (2 CPU / 4 GB): otherwise `HealthCheckTimeoutError`.
   `npx supabase stop` in the other project (data kept).
+- **`supabase start` fails on a fresh database with "type … already exists (SQLSTATE 42710) At
+  statement: 0" on the first migration** (CLI 2.120.0, the TypeScript CLI shipped with a
+  `supabase-go` binary; seen with Colima): the experimental "stack" backend applies every
+  migration while bootstrapping, without recording them in `supabase_migrations.schema_migrations`,
+  then the normal step applies them again. The database logs show each migration executed once
+  before the error. Fix: `SUPABASE_EXPERIMENTAL_STACK=0 npx supabase@<version> start` (legacy
+  backend), same for `functions serve`, `db …`.
 - `supabase start` while the database already runs (started by `db start`) reports "setup is
   running" and starts **nothing else** (no auth, API or storage): `supabase stop`, then `start`.
 - `supabase/snippets/` must exist before `start` (otherwise `chown` is refused on the share and
