@@ -36,3 +36,9 @@
   React's handler), then assert `prevented`.
 - `getByRole` / `queryByRole` skip elements hidden with `display: none`; to assert that something
   is hidden, query it with `{ hidden: true }` and expect `not.toBeVisible()`.
+- A Recharts tooltip does not open on `userEvent.hover` over a bar: Recharts reads the pointer
+  position on its wrapper and the hover carries none. Send
+  `fireEvent.mouseMove(canvasElement.querySelector('.recharts-wrapper'), { clientX, clientY })`
+  with the center of the bar's `getBoundingClientRect()`. The default tooltip splits each line
+  into name, separator and value spans: compare each `listitem`'s `textContent`
+  (`'Exceptions: 10'`), not `getByText` (Recharts 2.15).
