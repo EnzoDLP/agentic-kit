@@ -20,3 +20,17 @@
   change it (the state still goes through `toggleSorting`).
 - Set `sortDescFirst: false` in `useReactTable` options (or on the column def). With
   `enableSortingRemoval: false`, clicks then go ascending → descending → ascending.
+
+## The page freezes on the first sort
+
+- **A `data` array rebuilt on every render (`data: sortRows(rows, sort)`, `rows.filter(…)`) makes
+  an endless render loop** (TanStack Table 8.21, React 18): each new `data` recomputes the core
+  row model, which queues `resetPageIndex()` (`autoResetPageIndex`, on by default without
+  `manualPagination`), a state update that renders again with yet another `data`. It starts as
+  soon as the array stops being the same reference (e.g. a client sort that copies only once a
+  column is sorted). A real click runs it at sync priority and freezes the tab; a simulated click
+  (Testing Library, Storybook) lets it yield, so tests stay green.
+- Keep `data` stable: `useMemo` on its real inputs. `autoResetPageIndex: false` also stops it on a
+  table with no pagination, but leaves the extra row-model rebuilds.
+- Regression test in a browser story under `StrictMode`: count commits with a React `Profiler`,
+  click a sort, wait, check the count stops growing.
