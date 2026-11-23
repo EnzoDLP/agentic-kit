@@ -18,9 +18,10 @@
   `?from=2026-10-01T00:00:00.000Z`, where the API expects `?from=2026-10-01` (seen with
   `@hey-api/openapi-ts` 0.97, `client-axios`).
 - Fix once for every endpoint, without touching `src/generated/`: give the client a
-  `querySerializer` function in its `setConfig` (`Date` → `toISOString().slice(0, 10)`, other
-  values `String()`, skip `undefined` / `null`), and pass UTC midnight dates
-  (`new Date('2026-10-01')`) so the slice gives back the same calendar day.
+  `querySerializer` function in its `setConfig` that turns each `Date` into
+  `toISOString().slice(0, 10)` and hands the result to the generated `createQuerySerializer()`
+  (`client/utils.gen.ts`), so arrays, objects and encoding (`%20`) stay as generated. Pass UTC
+  midnight dates (`new Date('2026-10-01')`) so the slice gives back the same calendar day.
 - Test: a capturing `adapter`, then the app's configuration, then the operation; assert on the
   adapter's `config.url`.
 
