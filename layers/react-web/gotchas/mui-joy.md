@@ -42,3 +42,12 @@
   `h*` use `text.primary`). A `body-xs` label and a `body-sm` value therefore come out in the same
   gray and blur together. Give the value an explicit `textColor="text.primary"` (and an `md`
   weight); the label stays `text.tertiary`, uppercase if the page already uses it.
+
+## Grid list inside a bounded scroll area
+
+- **The rows of a CSS grid collapse to a couple of pixels instead of scrolling.** In a grid with
+  a bounded height (flex child with `minHeight: 0`, `overflowY: 'auto'`), items that clip their
+  overflow (`Typography noWrap` sets `overflow: hidden`) get an automatic minimum size of 0, so
+  the `auto` rows shrink to fit the container and the text disappears. Give the rows their content
+  height: `gridAutoRows: 'max-content'`. Checked in Chromium through a Storybook browser test
+  (row height 2px before, one text line after).
