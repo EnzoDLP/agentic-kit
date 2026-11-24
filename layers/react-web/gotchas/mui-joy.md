@@ -51,3 +51,21 @@
   the `auto` rows shrink to fit the container and the text disappears. Give the rows their content
   height: `gridAutoRows: 'max-content'`. Checked in Chromium through a Storybook browser test
   (row height 2px before, one text line after).
+
+## Dialog parts inside a `Drawer`
+
+- **A `DialogTitle` in a padded `Drawer` sits further right than the fields under it** (Joy
+  5.0.0-beta.52): `Drawer` gives a direct `DialogTitle` child `--unstable_DialogTitle-margin:
+  var(--Drawer-titleMargin)` (0.75rem at the default size), added to the content's own padding.
+  Set `'--Drawer-titleMargin': '0px'` in the `content` slot's `sx` when the content is padded.
+- **The drawer's buttons are hand-placed instead of Joy's dialog actions**: use `DialogActions`
+  (`row-reverse`: the primary action written first shows on the right, as in a `ModalDialog`).
+  Inside a `Drawer` it has no gap between buttons: add `sx={{ gap: 1 }}`.
+
+## Scrollable table frame
+
+- **The page stops scrolling while the pointer is over a table** with its own scroll
+  (`maxHeight` + `overflow: auto` on the `Sheet` around a sticky-header `Table`): an
+  `overscrollBehavior: 'none'` on that frame blocks scroll chaining, so at the table's top or
+  bottom the wheel no longer reaches the page. Leave the default (`auto`); a story can check
+  `getComputedStyle(frame).overscrollBehaviorY === 'auto'`.
