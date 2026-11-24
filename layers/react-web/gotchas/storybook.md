@@ -42,3 +42,8 @@
   with the center of the bar's `getBoundingClientRect()`. The default tooltip splits each line
   into name, separator and value spans: compare each `listitem`'s `textContent`
   (`'Exceptions: 10'`), not `getByText` (Recharts 2.15).
+- **`expect(toast).toBeVisible()` fails at random on a `react-toastify` toast** found by
+  `findByText`: the toast is in the DOM while still in its enter animation
+  (`Toastify__bounce-enter`), so the visibility check sometimes runs before it is visible, more
+  often when a modal opens at the same time. Assert a toast with `toBeInTheDocument()`
+  (react-toastify 11.1, Storybook 10.6).
