@@ -69,3 +69,10 @@
   `overscrollBehavior: 'none'` on that frame blocks scroll chaining, so at the table's top or
   bottom the wheel no longer reaches the page. Leave the default (`auto`); a story can check
   `getComputedStyle(frame).overscrollBehaviorY === 'auto'`.
+
+## Sizes in `sx`
+
+- **`sx={{ width: 1, height: 1 }}` is 100 %, not 1 px**: the MUI system reads a sizing number
+  between 0 and 1 (`width`, `height`, `min/maxWidth`, `min/maxHeight`) as a fraction of the
+  parent. A visually-hidden element written that way covered its whole container (clipped, so
+  nothing showed). Write pixels as strings: `width: '1px'` (`@mui/joy` 5.0.0-beta.52).
