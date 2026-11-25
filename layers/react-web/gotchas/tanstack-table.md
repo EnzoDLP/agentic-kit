@@ -6,6 +6,10 @@
   rebuilt on a render (a `useMemo` whose dependency changes: a callback, a `?? []` or
   `Object.values()` fallback, an `isUpdating` flag) give every cell a new component type: React
   **remounts every cell**, and selects or inputs flicker, close, or lose focus and state.
+- The same remount hides in tests: plain inline cells rebuilt on each render (the parent re-renders
+  as other queries resolve) replace the DOM nodes, so a row or cell found by a story and clicked a
+  moment later is detached, and the row's `onClick` never fires (no error, the assertion on the
+  navigation just times out).
 - Define the columns **once** (module constant, or a memo on `t` only) with named cell components,
   and pass what changes through a React context (or `table.options.meta`) that the cells read.
 - Regression test: render, keep `getAllByRole('combobox')`, re-render with new props, check they
